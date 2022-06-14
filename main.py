@@ -155,6 +155,26 @@ dic = {
              'name': 'Ramon Llull - Bernat Fenollar'}
 }
 
+#no me coge los archivos
+def read_data(texto1, texto2):
+    lista1= []
+    lista2 = []
+
+    with open(texto1, 'r') as archivo1:
+        reader = csv.reader(archivo1)
+        for fila in reader:
+            lista1.append(archivo1)
+
+            
+    print(lista1)
+
+    with open(texto2, 'r') as archivo2:
+        reader2 = csv.reader(archivo2)
+        for fila2 in reader2:
+            lista2.append(fila2)
+    
+    print(lista2)
+
 def get_name_description(clave, diccionario):
     lista = []
     if(len(clave)==4):
@@ -177,11 +197,35 @@ def search_by_lon(longitud, diccionario):
     lista = []
     resultado=[]
     if(type(longitud)==float):
-        for clave in diccionario:
-            for palabra in diccionario[clave]:
-                if palabra[0] < letra:
-                    resultado.append(palabra)
+        for clave in diccionario.values():
+            print(clave["lon"])
+
+def get_min(clave, diccionario):
+    lista = []
+    description = []
+    nombre = []
+    contador = 0
+    if(len(clave)<1020):
+        for k, v in diccionario.items():
+            if(k<clave):
+                for i in v.values():
+                    lista.append(i)
+                    print(lista)
+                description[contador] = lista[0]
+                nombre[contador] = lista[4]
+                print("Para el valor: " + clave)
+                print("La descripcion es: " + description)
+                print("El nombre es: " + nombre)
+                contador = contador + 1
+        if (len(description) == 0):
+            raise ValueError ("No hay elementos")
+    else:
+        raise ValueError ("Ha saltado el error")
+
+
 
 #get_name_description('1080', dic)
 #get_name_description('2000', dic)
-search_by_lon(728257.03, dic)
+#search_by_lon(728257.03, dic)
+get_min('2000', dic)
+
