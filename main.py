@@ -1,4 +1,6 @@
 import csv
+from unicodedata import name
+from pprint import pprint
 
 dic = {
     '1020': {'description': 'PSEG ALAMEDA 14 (DAVANT JARDÍ VIA CENTRAL) - VALÈNCIA',
@@ -154,9 +156,22 @@ dic = {
 }
 
 def get_name_description(clave, diccionario):
-    print("\nPor claves y valores:")
-    for k, v in diccionario.items():
-        if(k == clave):
-            print(v)
+    lista = []
+    if(len(clave)==4):
+        for k, v in diccionario.items():
+            if clave in k:
+                for i in v.values():
+                    lista.append(i)
+                description = lista[0]
+                nombre = lista[4]
+                print("Para la clave: " + clave)
+                print("La descripcion es: " + description)
+                print("El nombre es: " + nombre)
+        if (len(lista) == 0):
+            raise ValueError ("No existe esa clave")
+    else:
+        raise ValueError ("No existe esa clave")
+    
 
-get_name_description(1096, dic)
+get_name_description('1080', dic)
+get_name_description('2000', dic)
