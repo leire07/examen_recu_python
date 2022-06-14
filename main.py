@@ -172,6 +172,16 @@ def get_name_description(clave, diccionario):
     else:
         raise ValueError ("No existe esa clave")
     
+def search_by_lon(longitud, diccionario):
+    #Devuelve la clave que tenga ese valor de longitud es su campo lon
+    lista = []
+    resultado=[]
+    if(type(longitud)==float):
+        for clave in diccionario:
+            for palabra in diccionario[clave]:
+                if palabra[0] < letra:
+                    resultado.append(palabra)
 
-get_name_description('1080', dic)
-get_name_description('2000', dic)
+#get_name_description('1080', dic)
+#get_name_description('2000', dic)
+search_by_lon(728257.03, dic)
