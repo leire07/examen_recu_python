@@ -153,4 +153,10 @@ dic = {
              'name': 'Ramon Llull - Bernat Fenollar'}
 }
 
-print(dic)
+def get_name_description(clave, diccionario):
+    print("\nPor claves y valores:")
+    for k, v in diccionario.items():
+        if(k == clave):
+            print(v)
+
+get_name_description(1096, dic)
